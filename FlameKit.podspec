@@ -1,45 +1,42 @@
+#
+# Be sure to run `pod lib lint FlameKit.podspec' to ensure this is a
+# valid spec before submitting.
+#
+# Any lines starting with a # are optional, but their use is encouraged
+# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
+#
+
 Pod::Spec.new do |s|
+  s.name             = 'FlameKit'
+  s.version          = '0.1.0'
+  s.summary          = 'A short description of FlameKit.'
 
-# 1
-s.platform = :ios
-s.ios.deployment_target = '9.0'
-s.name = "FlameKit"
-s.summary = "iOS 11 style custom UI for 9.0+."
-s.requires_arc = true
+# This description is used to generate tags and improve search results.
+#   * Think: What does it do? Why did you write it? What is the focus?
+#   * Try to keep it short, snappy and to the point.
+#   * Write the description between the DESC delimiters below.
+#   * Finally, don't worry about the indent, CocoaPods strips it!
 
-# 2
-s.version = "0.1.0"
+  s.description      = <<-DESC
+TODO: Add long description of the pod here.
+                       DESC
 
-# 3
-s.license = { :type => "Apache 2.0", :file => "LICENSE" }
+  s.homepage         = 'https://github.com/draupnir45/FlameKit.git'
+  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.author           = { 'markoverthere' => 'draupnir45@gmail.com' }
+  s.source           = { :git => 'https://github.com/draupnir45/FlameKit.git', :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-# 4 - Replace with your name and e-mail address
-s.author = { "Jongchan Park" => "draupnir45@gmail.com" }
+  s.ios.deployment_target = '8.0'
 
-# For example,
-# s.author = { "Joshua Greene" => "jrg.developer@gmail.com" }
+  s.source_files = 'FlameKit/Classes/**/*'
+  
+  # s.resource_bundles = {
+  #   'FlameKit' => ['FlameKit/Assets/*.png']
+  # }
 
-
-# 5 - Replace this URL with your own Github page's URL (from the address bar)
-s.homepage = "https://github.com/draupnir45/FlameKit"
-
-# For example,
-# s.homepage = "https://github.com/JRG-Developer/RWPickFlavor"
-
-
-# 6 - Replace this URL with your own Git URL from "Quick Setup"
-s.source = { :git => "https://github.com/draupnir45/FlameKit", :tag => "#{s.version}"}
-
-# For example,
-# s.source = { :git => "https://github.com/JRG-Developer/RWPickFlavor.git", :tag => "#{s.version}"}
-
-
-# 7
-s.framework = "UIKit"
-
-# 8
-s.source_files = "FlameKit/**/*.{swift}"
-
-# 9
-s.resources = "FlameKit/**/*.{png,jpeg,jpg,storyboard,xib}"
+  # s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.frameworks = 'UIKit', 'MapKit'
+  # s.dependency 'AFNetworking', '~> 2.3'
 end

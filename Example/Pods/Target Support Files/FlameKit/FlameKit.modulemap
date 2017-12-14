@@ -1,0 +1,6 @@
+framework module FlameKit {
+  umbrella header "FlameKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
