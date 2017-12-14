@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FlameKit'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'iOS 11 style NavigationBar, combination with VerticalStack-ScrollView'
 
   s.description      = <<-DESC
@@ -27,7 +27,7 @@ DESC
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'FlameKit/**/*'
+  s.source_files = 'FlameKit/**'
   
   # s.resource_bundles = {
   #   'FlameKit' => ['FlameKit/Assets/*.png']
