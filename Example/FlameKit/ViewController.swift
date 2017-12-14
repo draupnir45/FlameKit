@@ -119,6 +119,9 @@ class ViewController: UIViewController {
     scrollView.frame = view.bounds
     
     view.addSubview(navigationBar)
+    
+//    let navigationBar = FlameNavigationBar()
+    scrollView.delegate = navigationBar
     navigationBar.scrollView = scrollView
     scrollView.contentInset.top = navigationBar.frame.height
     
@@ -141,6 +144,22 @@ class ViewController: UIViewController {
   }
   
   func setContent() {
+    
+    let button = FlameButton()
+    let customView = UIView()
+    
+    button.add { (button) in
+      print("button is tapped!")
+    }
+    
+    button.setCustomView(customView) { (isSelected) in
+      if isSelected {
+        customView.backgroundColor = .red
+      } else {
+        customView.backgroundColor = .blue
+      }
+    }
+    
     scrollView.addMarginStack(height: 16.0)
     scrollView.addArrangedSubview(newTitleStack("FlameNavigationBar"))
     scrollView.addArrangedSubview(newLabelStack("  iOS 11에서 소개된 largeTitleMode를 흉내낸 커스텀 네비게이션바입니다. iOS 9.0에서도 문제없이 사용할 수 있습니다. 등록된 scrollView로부터 스크롤된 상태를 체크하고, 자동으로 Height를 조정하면서 큰 타이틀 작은 타이틀 사이를 번갈아 움직입니다. 초기화할 때 프레임을 넣더라도 무시하고 기본값으로 작동합니다. 현재 사이즈 조정은 지원하지 않지만, 서브뷰를 추가해 사이즈가 커진 것과 같은 효과를 낼 수 있습니다."))

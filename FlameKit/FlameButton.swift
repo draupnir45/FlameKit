@@ -8,8 +8,8 @@
 
 import UIKit
 
-typealias FlameButtonHandler = (FlameButton) -> Void
-typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
+public typealias FlameButtonHandler = (FlameButton) -> Void
+public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
 
 public class FlameButton: UIView {
   
@@ -35,7 +35,7 @@ public class FlameButton: UIView {
     }
   }
   
-  func add(handler: @escaping FlameButtonHandler) {
+  public func add(handler: @escaping FlameButtonHandler) {
     self.handler = handler
   }
   
@@ -49,7 +49,7 @@ public class FlameButton: UIView {
     setInitialState()
   }
   
-  func setCustomView(_ customView: UIView, appearanceHandler: @escaping FlameButtonAppearanceHandler) {
+  public func setCustomView(_ customView: UIView, appearanceHandler: @escaping FlameButtonAppearanceHandler) {
     addSubview(customView)
     customView.frame = bounds
     

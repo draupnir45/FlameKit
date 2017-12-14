@@ -223,11 +223,7 @@ public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollVi
     fatalError("init(coder:) has not been implemented")
   }
   
-  public var scrollView: UIScrollView? {
-    didSet {
-      scrollView?.delegate = self
-    }
-  }
+  public var scrollView: UIScrollView?
   var didEndDecelerating = false
   
   public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
