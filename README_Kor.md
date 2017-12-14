@@ -14,6 +14,8 @@ iOS 9.0을 디플로이 타겟으로 하는 앱들을 위한 커스텀 UI 라이
 ### FlameNavigationBar
 iOS 11에서 소개된 largeTitleMode를 흉내낸 커스텀 네비게이션바입니다. iOS 9.0에서도 문제없이 사용할 수 있습니다. 등록된 scrollView로부터 스크롤된 상태를 체크하고, 자동으로 Height를 조정하면서 큰 타이틀 작은 타이틀 사이를 번갈아 움직입니다. 초기화할 때 프레임을 넣더라도 무시하고 기본값으로 작동합니다. 현재 사이즈 조정은 지원하지 않지만, 서브뷰를 추가해 사이즈가 커진 것과 같은 효과를 낼 수 있습니다.
 
+(현재 버전에서는 FlameNavigationBar와 스크롤뷰를 연동할 경우 스크롤뷰 딜리게이트를 제대로 못 쓰는 문제가 있습니다.........ㅜㅠ 해결할 방법을 찾고 있어용)
+
 ### FlameScrollView
 기본 베이스는 스크롤 뷰이지만, 버티컬 스택뷰를 포함하고 있는 스크롤뷰입니다. 컨텐트사이즈는 오토 레이아웃을 통해 자동으로 스택 뷰의 높이에 따라 길어집니다. addArrangedSubview(_:animated:horizontalInset:height:) 와 insertArrangedSubview(_:index:animated:horizontalInset:height:)를 이용해서 서브뷰를 추가하면 됩니다.
 UITableView의 키보드 노티 듣는 기능도 지원합니다. 일반 키보드나 피커에 따라 자동으로 컨텐트 인셋과 인디케이터 인셋을 추가했다 뺐다 합니다.
