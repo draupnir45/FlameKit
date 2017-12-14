@@ -18,6 +18,7 @@ iOS 11에서 소개된 largeTitleMode를 흉내낸 커스텀 네비게이션바�
 
 ```swift
 let navigationBar = FlameNavigationBar()
+navigationBar.title = "View Title"
 scrollView.delegate = navigationBar
 navigationBar.scrollView = scrollView
 scrollView.contentInset.top = navigationBar.frame.height

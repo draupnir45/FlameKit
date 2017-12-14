@@ -17,6 +17,7 @@ FlameNavigationBar is UIView-based customizable NavigationBar. FlameNavigationBa
 
 ```swift
 let navigationBar = FlameNavigationBar()
+navigationBar.title = "View Title"
 scrollView.delegate = navigationBar
 navigationBar.scrollView = scrollView
 scrollView.contentInset.top = navigationBar.frame.height
