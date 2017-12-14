@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FlameKit'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'iOS 11 style NavigationBar, combination with VerticalStack-ScrollView'
 
   s.description      = <<-DESC
