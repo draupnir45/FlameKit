@@ -1,6 +1,6 @@
 # FlameKit
 
-[![CI Status](http://img.shields.io/travis/markoverthere/FlameKit.svg?style=flat)](https://travis-ci.org/markoverthere/FlameKit)
+[![CI Status](http://img.shields.io/travis/draupnir45/FlameKit.svg?style=flat)](https://travis-ci.org/markoverthere/FlameKit)
 [![Version](https://img.shields.io/cocoapods/v/FlameKit.svg?style=flat)](http://cocoapods.org/pods/FlameKit)
 [![License](https://img.shields.io/cocoapods/l/FlameKit.svg?style=flat)](http://cocoapods.org/pods/FlameKit)
 [![Platform](https://img.shields.io/cocoapods/p/FlameKit.svg?style=flat)](http://cocoapods.org/pods/FlameKit)
@@ -22,7 +22,7 @@ pod 'FlameKit'
 
 ## Author
 
-markoverthere, mark@okthere.com
+Jongchan Mark Park, draupnir45@gmail.com
 
 ## License
 
