@@ -11,11 +11,11 @@ import UIKit
 
 
 /// ScrollView with built-in stackView. 
-public class FlameScrollView: UIScrollView, UITextFieldDelegate {
+open class FlameScrollView: UIScrollView, UITextFieldDelegate {
   
   // MARK: - UIViews
   let contentView = UIView()
-  let rootStackView: UIStackView = {
+  public let rootStackView: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .vertical
     stackView.alignment = .center
@@ -41,12 +41,12 @@ public class FlameScrollView: UIScrollView, UITextFieldDelegate {
     }
   }
   
-  override public var contentInset: UIEdgeInsets {
+  override open var contentInset: UIEdgeInsets {
     didSet {
       self.scrollIndicatorInsets = contentInset
     }
   }
-
+  
   
   public var numberOfStacks: Int {
     return self.rootStackView.arrangedSubviews.count - 2
@@ -103,7 +103,7 @@ public class FlameScrollView: UIScrollView, UITextFieldDelegate {
       NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0),
       NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0),
       NSLayoutConstraint(item: contentView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0.0),
-
+      
       // rootStackView
       NSLayoutConstraint(item: rootStackView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1.0, constant: 0.0),
       NSLayoutConstraint(item: rootStackView, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: 1.0, constant: 0.0),
@@ -160,7 +160,7 @@ public class FlameScrollView: UIScrollView, UITextFieldDelegate {
     keyboardWillShowObserver = nil
   }
   
-  override public func layoutSubviews() {
+  override open func layoutSubviews() {
     super.layoutSubviews()
     layoutIfNeeded()
   }
@@ -168,10 +168,10 @@ public class FlameScrollView: UIScrollView, UITextFieldDelegate {
   // MARK: - Subviews Control
   
   public func insertArrangedSubview(_ view: UIView,
-                     index: Int, 
-                     animated: Bool = false, 
-                     horizontalInset: CGFloat = 0.0, 
-                     height: CGFloat = 0.0) {
+                                    index: Int, 
+                                    animated: Bool = false, 
+                                    horizontalInset: CGFloat = 0.0, 
+                                    height: CGFloat = 0.0) {
     
     view.translatesAutoresizingMaskIntoConstraints = false
     
@@ -216,10 +216,10 @@ public class FlameScrollView: UIScrollView, UITextFieldDelegate {
   public func addArrangedSubview(_ view: UIView, animated: Bool = false, horizontalInset: CGFloat = 0.0, height: CGFloat = 0.0) {
     
     self.insertArrangedSubview(view, 
-                       index: rootStackView.arrangedSubviews.count - 2,
-                       animated: animated, 
-                       horizontalInset: horizontalInset,
-                       height: height)
+                               index: rootStackView.arrangedSubviews.count - 2,
+                               animated: animated, 
+                               horizontalInset: horizontalInset,
+                               height: height)
   }
   
   public func removeArrangedSubview(_ view: UIView, animated: Bool) {
@@ -258,3 +258,4 @@ public class FlameScrollView: UIScrollView, UITextFieldDelegate {
   }
   
 }
+

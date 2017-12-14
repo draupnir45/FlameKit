@@ -11,14 +11,14 @@ import UIKit
 public typealias FlameButtonHandler = (FlameButton) -> Void
 public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
 
-public class FlameButton: UIView {
+open class FlameButton: UIView {
   
   var handler: FlameButtonHandler?
   
   var customView: UIView?
   var appearanceHandler: FlameButtonAppearanceHandler?
   
-  var isSelected: Bool = false {
+  public var isSelected: Bool = false {
     didSet { appearanceHandler?(isSelected) }
   }
   
@@ -51,7 +51,46 @@ public class FlameButton: UIView {
   
   public func setCustomView(_ customView: UIView, appearanceHandler: @escaping FlameButtonAppearanceHandler) {
     addSubview(customView)
-    customView.frame = bounds
+    NSLayoutConstraint.activate(
+      [
+        NSLayoutConstraint.init(
+          item: customView, 
+          attribute: NSLayoutAttribute.width, 
+          relatedBy: NSLayoutRelation.equal, 
+          toItem: self, 
+          attribute: NSLayoutAttribute.width, 
+          multiplier: 1.0, 
+          constant: 0.0
+        ),
+        NSLayoutConstraint.init(
+          item: customView, 
+          attribute: NSLayoutAttribute.height, 
+          relatedBy: NSLayoutRelation.equal, 
+          toItem: self, 
+          attribute: NSLayoutAttribute.height, 
+          multiplier: 1.0, 
+          constant: 0.0
+        ),
+        NSLayoutConstraint.init(
+          item: customView, 
+          attribute: NSLayoutAttribute.centerX, 
+          relatedBy: NSLayoutRelation.equal, 
+          toItem: self, 
+          attribute: NSLayoutAttribute.centerX, 
+          multiplier: 1.0, 
+          constant: 0.0
+        ),
+        NSLayoutConstraint.init(
+          item: customView, 
+          attribute: NSLayoutAttribute.centerY, 
+          relatedBy: NSLayoutRelation.equal, 
+          toItem: self, 
+          attribute: NSLayoutAttribute.centerY, 
+          multiplier: 1.0, 
+          constant: 0.0
+        )
+      ]
+    )
     
     self.customView = customView
     self.appearanceHandler = appearanceHandler
@@ -59,3 +98,4 @@ public class FlameButton: UIView {
   }
   
 }
+

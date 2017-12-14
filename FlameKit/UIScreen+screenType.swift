@@ -37,3 +37,4 @@ public extension UIScreen {
     return UIScreen.screenType == .iPhoneX
   }
 }
+

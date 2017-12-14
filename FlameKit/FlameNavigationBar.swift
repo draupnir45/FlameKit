@@ -12,7 +12,7 @@ public protocol FlameNavigationBarDelegate: class {
   func flameNavigationBarDidResizeHeightTo(_ barHeight: CGFloat)
 }
 
-public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+open class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
   // ----------------------------------------
   //  스테이터스 바 영역 statusBarBackgroundView
   // ----------------------------------------
@@ -25,28 +25,28 @@ public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollVi
   
   // MARK: - Settings
   
-  struct Metric {
-    static let screenWidth: CGFloat = UIScreen.width
-    static var statusBarHeight: CGFloat {
+  public struct Metric {
+    static public let screenWidth: CGFloat = UIScreen.width
+    static public var statusBarHeight: CGFloat {
       if UIScreen.isIphoneX {
         return 44.0
       } else {
         return 20.0
       }
     }
-    static let staticAreaHeight: CGFloat = 44.0
-    static let dynamicAreaHeight: CGFloat = 52.0
-    static let totalHeight = 
+    static public let staticAreaHeight: CGFloat = 44.0
+    static public let dynamicAreaHeight: CGFloat = 52.0
+    static public let totalHeight = 
       Metric.statusBarHeight + 
         Metric.staticAreaHeight + 
         Metric.dynamicAreaHeight
   }
   
-  struct Color {
+  public struct Color {
     
   }
   
-  struct Fonts {
+  public struct Fonts {
     
   }
   
@@ -94,7 +94,7 @@ public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollVi
     return label
   }()
   
-
+  
   
   func snap() -> CGFloat {
     if collapsedSize > Metric.dynamicAreaHeight / 2.0 {
@@ -151,14 +151,14 @@ public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollVi
     }
   }
   
-  let statusBarBackgroundView: UIView = {
+  public let statusBarBackgroundView: UIView = {
     let view = UIView(frame: CGRect(origin: CGPoint.zero, 
                                     size: CGSize.init(width: Metric.screenWidth, 
                                                       height: Metric.statusBarHeight)))
     return view
   }()
   
-  let staticNavigationBarView: UIView = {
+  public let staticNavigationBarView: UIView = {
     let view = UIView(frame: CGRect(x: 0.0, 
                                     y: Metric.statusBarHeight, 
                                     width: Metric.screenWidth, 
@@ -166,7 +166,7 @@ public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollVi
     return view
   }()
   
-  let dynamicNavigationBarView: UIView = {
+  public let dynamicNavigationBarView: UIView = {
     let view = UIView(frame: CGRect(x: 0.0, 
                                     y: Metric.statusBarHeight + Metric.staticAreaHeight, 
                                     width: Metric.screenWidth, 
@@ -174,7 +174,7 @@ public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollVi
     return view
   }()
   
-  let shadowView: UIView = {
+  public let shadowView: UIView = {
     let view = UIView(frame: CGRect(x: 0.0, 
                                     y: Metric.dynamicAreaHeight, 
                                     width: Metric.screenWidth, 
@@ -194,7 +194,7 @@ public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollVi
     dynamicNavigationBarView.addSubview(largeTitleLabel)
   }
   
-  override public func layoutSubviews() {
+  override open func layoutSubviews() {
     super.layoutSubviews()
     
     normalTitleLabel.sizeToFit()
@@ -263,3 +263,4 @@ public class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollVi
     }
   }
 }
+
