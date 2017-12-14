@@ -27,7 +27,7 @@ DESC
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'FlameKit/**'
+  s.source_files = 'FlameKit/**/*'
   
   # s.resource_bundles = {
   #   'FlameKit' => ['FlameKit/Assets/*.png']
