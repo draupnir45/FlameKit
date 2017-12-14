@@ -1,9 +1,11 @@
 # FlameKit
 
-[![CI Status](http://img.shields.io/travis/draupnir45/FlameKit.svg?style=flat)](https://travis-ci.org/markoverthere/FlameKit)
 [![Version](https://img.shields.io/cocoapods/v/FlameKit.svg?style=flat)](http://cocoapods.org/pods/FlameKit)
 [![License](https://img.shields.io/cocoapods/l/FlameKit.svg?style=flat)](http://cocoapods.org/pods/FlameKit)
 [![Platform](https://img.shields.io/cocoapods/p/FlameKit.svg?style=flat)](http://cocoapods.org/pods/FlameKit)
+
+한글 설명은 [여기](README_Kor.md)
+
 
 ## Example
 
