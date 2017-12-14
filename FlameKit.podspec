@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'FlameKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of FlameKit.'
+  s.summary          = 'iOS 11 style NavigationBar, combination with VerticalStack-ScrollView'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,17 +18,22 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+FlameKit is collection of simple custom UIs. For version 0.1.0, it offers FlameNavigationBar, FlameScrollView & FlameButton. 
 
-  s.homepage         = 'https://github.com/draupnir45/FlameKit.git'
+FlameNavigationBar is UIView-based customizable NavigationBar. FlameNavigationBar supports iOS 11 style LargeTitle and collapsing. It's compatible with scrollview. (FlameNavigationBar will be a delegate of scrollView... It will be fixed in future update.)
+
+FlameScrollView is subclass of UIScrollView which has UIStackView(vertical) as a built-in subview. It's seats somewhere between UIScrollView and UITableView. If you want to add vertical stack simply call addArrangedSubview(_:animated:horizontalInset:height:) to the instance of FlameScrollView. FlameScrollView also automatically listen to the keyboard show/hide notification.
+
+DESC
+
+  s.homepage         = 'https://github.com/draupnir45/FlameKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'markoverthere' => 'draupnir45@gmail.com' }
+  s.author           = { 'Jongchan Park' => 'draupnir45@gmail.com' }
   s.source           = { :git => 'https://github.com/draupnir45/FlameKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'FlameKit/Classes/**/*'
   
@@ -37,6 +42,6 @@ TODO: Add long description of the pod here.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'UIKit'
+# s.dependency 'SnapKit'
 end

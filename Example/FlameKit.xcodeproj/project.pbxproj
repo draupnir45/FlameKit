@@ -40,12 +40,12 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6379218A5B3E55945C349048 /* Pods-FlameKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlameKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlameKit_Example/Pods-FlameKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		8B16E28A02B84F083B0F438E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		8B16E28A02B84F083B0F438E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A2090A555B78A9461FFEA5B6 /* Pods-FlameKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlameKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlameKit_Tests/Pods-FlameKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A417B0BF938D487AEAD56955 /* Pods-FlameKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlameKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlameKit_Example/Pods-FlameKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		BA8E73FF6C2822559BA2804A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		BA8E73FF6C2822559BA2804A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C1C5A8BAA55B4E6F2BC59233 /* Pods_FlameKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlameKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E165326A465D760160712119 /* FlameKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = FlameKit.podspec; path = ../FlameKit.podspec; sourceTree = "<group>"; };
+		E165326A465D760160712119 /* FlameKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FlameKit.podspec; path = ../FlameKit.podspec; sourceTree = "<group>"; };
 		EA813F63113535AE747B8A8C /* Pods-FlameKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlameKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlameKit_Tests/Pods-FlameKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,10 +215,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 8KDMCH8V2F;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 8KDMCH8V2F;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -516,7 +518,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6379218A5B3E55945C349048 /* Pods-FlameKit_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8KDMCH8V2F;
 				INFOPLIST_FILE = FlameKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -531,7 +535,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A417B0BF938D487AEAD56955 /* Pods-FlameKit_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8KDMCH8V2F;
 				INFOPLIST_FILE = FlameKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -546,10 +552,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2090A555B78A9461FFEA5B6 /* Pods-FlameKit_Tests.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				DEVELOPMENT_TEAM = 8KDMCH8V2F;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -567,10 +570,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA813F63113535AE747B8A8C /* Pods-FlameKit_Tests.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				DEVELOPMENT_TEAM = 8KDMCH8V2F;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
