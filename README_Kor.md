@@ -23,8 +23,8 @@ UITableView의 키보드 노티 듣는 기능도 지원합니다. 일반 키보�
 
 ## Requirements
 
-- Swift 4.0
-- iOS 9.0 ~
+- Swift 4.0 +
+- iOS 9.0 +
 
 ## Installation
 
