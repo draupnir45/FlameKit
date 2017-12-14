@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		20577F9A9BC3861CAC8469392C7CC3FE /* FlameKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AB0696FAB1BDA298B9E724BAD6634C /* FlameKit-dummy.m */; };
-		2BFB561CE1D661933368EEB09E394094 /* FlameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A086BEAF03771EDDBC8FDA8AD18C8D4 /* FlameButton.swift */; };
 		434DED42B35DE43E9934B1BCC86E8166 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
 		4A1C1ACF1D7AF830B74F5EB2EAF2C014 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		7871C7FE4E9EA3D7322A8F3ABE50C447 /* FlameScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8856673A7AFC711B6568B9D7B7CB5F3E /* FlameScrollView.swift */; };
 		952DCDB2AA80DDD00F0B5753614217F8 /* Pods-FlameKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC7F8F698DDC0D9F82625B06E3A0F1E /* Pods-FlameKit_Tests-dummy.m */; };
 		9CF780F9C247CD74C91B8B42FC80B91D /* Pods-FlameKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B25CA87D8501FF454826FEE3072807C8 /* Pods-FlameKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A05CB93FB56A70B6329E92F5408F9981 /* Pods-FlameKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A60BE83E1AEEF6F3B9AB93F9CCDA847 /* Pods-FlameKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1688E4C32737B605716781623640AFD /* FlameKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65399FAE8838B4C08DACD3CBF6DADC0C /* FlameKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B908A44B1FE218C8000139CA /* UIScreen+screenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B908A4471FE218C8000139CA /* UIScreen+screenType.swift */; };
+		B9E278461FE2467D005D4231 /* UIScreen+screenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E278421FE2467D005D4231 /* UIScreen+screenType.swift */; };
+		B9E278471FE2467D005D4231 /* FlameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E278431FE2467D005D4231 /* FlameButton.swift */; };
+		B9E278481FE2467D005D4231 /* FlameNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E278441FE2467D005D4231 /* FlameNavigationBar.swift */; };
+		B9E278491FE2467D005D4231 /* FlameScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E278451FE2467D005D4231 /* FlameScrollView.swift */; };
 		C5C1AE48FF95A026F38B552E7B14D7E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		DAA77FB3D636E47FD7811390F776B3FD /* FlameNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BE09C60C7F601B70156EF87B08AFD /* FlameNavigationBar.swift */; };
 		DFD47D992FF2C53094A6015A38DEF442 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
 		F5941B2DAEFAF76075C173BED61B4AD5 /* Pods-FlameKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA233E52A3C89268CCE205FA8BC68B0D /* Pods-FlameKit_Example-dummy.m */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,6 @@
 
 /* Begin PBXFileReference section */
 		067D78E2FC9B96F16D975DC3CF70E6D6 /* Pods-FlameKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-FlameKit_Example.modulemap"; sourceTree = "<group>"; };
-		0A086BEAF03771EDDBC8FDA8AD18C8D4 /* FlameButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FlameButton.swift; path = FlameKit/Classes/FlameButton.swift; sourceTree = "<group>"; };
 		19057D1BBA752A62A85D72FBDDF6D8BF /* Pods_FlameKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlameKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE56233307242CB3080D317E046E695 /* Pods-FlameKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FlameKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1D3EA8029090B14E77F4F1C83DB9B09C /* FlameKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlameKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,8 +46,6 @@
 		5D60BEBC5ED33E2C022FE93C03FB93CE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65399FAE8838B4C08DACD3CBF6DADC0C /* FlameKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FlameKit-umbrella.h"; sourceTree = "<group>"; };
 		875A8013E9099B7911FA022948497388 /* Pods-FlameKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FlameKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		8856673A7AFC711B6568B9D7B7CB5F3E /* FlameScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FlameScrollView.swift; path = FlameKit/Classes/FlameScrollView.swift; sourceTree = "<group>"; };
-		8A8BE09C60C7F601B70156EF87B08AFD /* FlameNavigationBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FlameNavigationBar.swift; path = FlameKit/Classes/FlameNavigationBar.swift; sourceTree = "<group>"; };
 		8B5A4033F46AD4533FE51B915D991B29 /* Pods-FlameKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FlameKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		92C055F9D09245619465BD4CD3634020 /* Pods-FlameKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FlameKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		9363FF3ED6F83877B9EA67A3BE945684 /* FlameKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FlameKit.modulemap; sourceTree = "<group>"; };
@@ -59,7 +56,10 @@
 		A2EE5CB45D3839C9CBDE8E2DB3D99004 /* Pods-FlameKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-FlameKit_Tests.modulemap"; sourceTree = "<group>"; };
 		B25CA87D8501FF454826FEE3072807C8 /* Pods-FlameKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FlameKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B908A4471FE218C8000139CA /* UIScreen+screenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIScreen+screenType.swift"; path = "FlameKit/Classes/UIScreen+screenType.swift"; sourceTree = "<group>"; };
+		B9E278421FE2467D005D4231 /* UIScreen+screenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIScreen+screenType.swift"; path = "FlameKit/UIScreen+screenType.swift"; sourceTree = "<group>"; };
+		B9E278431FE2467D005D4231 /* FlameButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlameButton.swift; path = FlameKit/FlameButton.swift; sourceTree = "<group>"; };
+		B9E278441FE2467D005D4231 /* FlameNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlameNavigationBar.swift; path = FlameKit/FlameNavigationBar.swift; sourceTree = "<group>"; };
+		B9E278451FE2467D005D4231 /* FlameScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlameScrollView.swift; path = FlameKit/FlameScrollView.swift; sourceTree = "<group>"; };
 		BA233E52A3C89268CCE205FA8BC68B0D /* Pods-FlameKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FlameKit_Example-dummy.m"; sourceTree = "<group>"; };
 		BEE20BB1246820BD1389E2E9BF31B702 /* Pods-FlameKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FlameKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C15725D58A14B9DF1F84F42AEA0EBEC4 /* FlameKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FlameKit-prefix.pch"; sourceTree = "<group>"; };
@@ -131,10 +131,10 @@
 		761EC3279647095DEAE8AB4873D2BEC5 /* FlameKit */ = {
 			isa = PBXGroup;
 			children = (
-				0A086BEAF03771EDDBC8FDA8AD18C8D4 /* FlameButton.swift */,
-				8A8BE09C60C7F601B70156EF87B08AFD /* FlameNavigationBar.swift */,
-				8856673A7AFC711B6568B9D7B7CB5F3E /* FlameScrollView.swift */,
-				B908A4471FE218C8000139CA /* UIScreen+screenType.swift */,
+				B9E278431FE2467D005D4231 /* FlameButton.swift */,
+				B9E278441FE2467D005D4231 /* FlameNavigationBar.swift */,
+				B9E278451FE2467D005D4231 /* FlameScrollView.swift */,
+				B9E278421FE2467D005D4231 /* UIScreen+screenType.swift */,
 				C9D866313AC39CE2C65DB2B25C837885 /* Support Files */,
 			);
 			name = FlameKit;
@@ -309,6 +309,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					CA779BCB32754F993F75178EBC525145 = {
+						LastSwiftMigration = 0920;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -342,11 +347,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B908A44B1FE218C8000139CA /* UIScreen+screenType.swift in Sources */,
-				2BFB561CE1D661933368EEB09E394094 /* FlameButton.swift in Sources */,
+				B9E278491FE2467D005D4231 /* FlameScrollView.swift in Sources */,
 				20577F9A9BC3861CAC8469392C7CC3FE /* FlameKit-dummy.m in Sources */,
-				DAA77FB3D636E47FD7811390F776B3FD /* FlameNavigationBar.swift in Sources */,
-				7871C7FE4E9EA3D7322A8F3ABE50C447 /* FlameScrollView.swift in Sources */,
+				B9E278481FE2467D005D4231 /* FlameNavigationBar.swift in Sources */,
+				B9E278471FE2467D005D4231 /* FlameButton.swift in Sources */,
+				B9E278461FE2467D005D4231 /* UIScreen+screenType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 338E0E0040EC2CEDAB3E7F2EE7A3E22B /* FlameKit.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -654,6 +660,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 338E0E0040EC2CEDAB3E7F2EE7A3E22B /* FlameKit.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
