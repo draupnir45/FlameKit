@@ -9,12 +9,12 @@
 import UIKit
 
 public extension UIScreen {
-  public class var flm: FlameScreenUtil {
+  @objc public class var flm: FlameScreenUtil {
     return FlameScreenUtil()
   }
 }
 
-public class FlameScreenUtil {
+@objcMembers public class FlameScreenUtil: NSObject {
   public enum ScreenType: Int { //스크린 높이를 rawValue로.
     case iPhone1 = 480
     case iPhone5 = 568

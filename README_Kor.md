@@ -101,6 +101,13 @@ button.setCustomView(customView) { (isSelected) in // 커스텀뷰의 모양을 
 pod 'FlameKit'
 ```
 
+## Objective-C 지원
+pod 설치 후 헤더 파일에 아래와 같이 임포트해 주세요.
+
+```objc
+@import FlameKit;
+```
+
 ## Author
 
 Jongchan Mark Park, draupnir45@gmail.com

@@ -109,6 +109,13 @@ it, simply add the following line to your Podfile:
 pod 'FlameKit'
 ```
 
+## Using Objective-C?
+Install pod first. then on your .h file,
+
+```objc
+@import FlameKit;
+```
+
 ## Author
 
 Jongchan Mark Park, draupnir45@gmail.com

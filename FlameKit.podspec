@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FlameKit'
-  s.version          = '0.1.7'
-  s.summary          = 'iOS 11 style NavigationBar, combination with VerticalStack-ScrollView'
-
+  s.version          = '0.1.8'
+  s.summary          = 'StackView + ScrollView, simplified.'
+  
   s.description      = <<-DESC
 FlameKit is collection of simple custom UIs. For version 0.1.0, it offers FlameNavigationBar, FlameScrollView & FlameButton. 
 
@@ -24,7 +24,8 @@ DESC
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Jongchan Park' => 'draupnir45@gmail.com' }
   s.source           = { :git => 'https://github.com/draupnir45/FlameKit.git', :tag => s.version.to_s }
-
+  
+  s.pod_target_xcconfig = { "SWIFT_VERSION" => "4.0" }
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'FlameKit/**/*'

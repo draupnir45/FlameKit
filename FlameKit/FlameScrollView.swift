@@ -11,7 +11,7 @@ import UIKit
 
 
 /// ScrollView with built-in stackView. 
-open class FlameScrollView: UIScrollView, UITextFieldDelegate {
+@objcMembers open class FlameScrollView: UIScrollView, UITextFieldDelegate {
   
   // MARK: - UIViews
   let contentView = UIView()

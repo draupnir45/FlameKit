@@ -12,7 +12,7 @@ public protocol FlameNavigationBarDelegate: class {
   func flameNavigationBarDidResizeHeightTo(_ barHeight: CGFloat)
 }
 
-open class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+@objcMembers open class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
   // ----------------------------------------
   //  스테이터스 바 영역 statusBarBackgroundView
   // ----------------------------------------

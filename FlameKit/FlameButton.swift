@@ -11,7 +11,7 @@ import UIKit
 public typealias FlameButtonHandler = (FlameButton) -> Void
 public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
 
-open class FlameButton: UIView {
+@objcMembers open class FlameButton: UIView {
   
   var handler: FlameButtonHandler?
   
