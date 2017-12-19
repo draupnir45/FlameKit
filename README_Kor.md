@@ -13,12 +13,19 @@ iOS 9.0을 디플로이 타겟으로 하는 앱들을 위한 커스텀 UI 라이
 
 ### FlameScreenUtil (NEW!)
 
-FlameScreenUtil은 스크린 사이즈 대응을 위한 간단한 getter 모음입니다.
+FlameScreenUtil은 아이폰 스크린 사이즈 대응을 위한 간단한 getter 모음입니다.
+
+#### 지원 사이즈
+- iPhone1 - 오리지널 320 x 480 (iPhone 2G ~ iPhone 4S)
+- iPhone5 - 와이드1 320 x 568 (iPhone 5 ~ iPhone SE)
+- iPhone6 - 와이드2 375 x 667 (iPhone 6 ~ iPhone 8)
+- iPhone6Plus - 와이드3 414 x 736 (iPhone 6+ ~ iPhone 8+)
+- iPhoneX - 새로운 사이즈 375 x 812 (iPhone X)
 
 #### Usage
 
 ```swift
-switch UIScreen.flm.screenType{ 
+switch UIScreen.flm.screenType { 
 case .iPhone6Plus:
   // setting for iPhone 6 Plus..
 case .iPhoneX:

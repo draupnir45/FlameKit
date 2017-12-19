@@ -14,10 +14,17 @@ FlameKit is collection of simple custom UIs. For version 0.1.0, It offers three 
 
 FlameScreenUtil is collection of simple getters for dealing with various iphone screen sizes.
 
+#### Supporting Sizes
+- iPhone1 - 320 x 480 (iPhone 2G ~ iPhone 4S)
+- iPhone5 - 320 x 568 (iPhone 5 ~ iPhone SE)
+- iPhone6 - 375 x 667 (iPhone 6 ~ iPhone 8)
+- iPhone6Plus - 414 x 736 (iPhone 6+ ~ iPhone 8+)
+- iPhoneX - 375 x 812 (iPhone X)
+
 #### Usage
 
 ```swift
-switch UIScreen.flm.screenType{ 
+switch UIScreen.flm.screenType { 
 case .iPhone6Plus:
   // setting for iPhone 6 Plus..
 case .iPhoneX:
