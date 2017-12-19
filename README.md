@@ -8,7 +8,43 @@
 
 ## Summary
 
-FlameKit is collection of simple custom UIs. For version 0.1.0, It offers three Classes. FlameNavigationBar, FlameScrollView & FlameButton. 
+FlameKit is collection of simple custom UIs. For version 0.1.0, It offers three Classes & one util. FlameScrollView, FlameNavigationBar, FlameButton & *new FlameScreenUtil*
+
+### FlameScreenUtil (NEW!)
+
+FlameScreenUtil is collection of simple getters for dealing with various iphone screen sizes.
+
+#### Usage
+
+```swift
+switch UIScreen.flm.screenType{ 
+case .iPhone6Plus:
+  // setting for iPhone 6 Plus..
+case .iPhoneX:
+  // setting for iPhone X..
+default:
+  // setting for others...
+}
+
+if UIScreen.flm.isIphoneX {
+  //setting specific for iPhone X..
+}
+```
+
+### FlameScrollView
+
+FlameScrollView is subclass of UIScrollView which has UIStackView(vertical) as a built-in subview. It's seats somewhere between UIScrollView and UITableView. If you want to add vertical stack simply call addArrangedSubview(_:animated:horizontalInset:height:) to the instance of FlameScrollView. FlameScrollView also automatically listen to the keyboard show/hide notification.
+
+#### Usage
+
+```swift
+let scrollView = FlameScrollView(frame: view.bounds)
+scrollView.addArrangedSubview(subView1)
+scrollView.addArrangedSubview(subView2)
+scrollView.addMarginStack(height: 16.0) // adding margin
+```
+
+
 
 ### FlameNavigationBar
 FlameNavigationBar is UIView-based customizable NavigationBar. FlameNavigationBar supports iOS 11 style LargeTitle and collapsing. It's compatible with scrollview. (FlameNavigationBar need to be a delegate of scrollView.)
@@ -23,17 +59,6 @@ navigationBar.scrollView = scrollView
 scrollView.contentInset.top = navigationBar.frame.height
 ```
 
-### FlameScrollView
-FlameScrollView is subclass of UIScrollView which has UIStackView(vertical) as a built-in subview. It's seats somewhere between UIScrollView and UITableView. If you want to add vertical stack simply call addArrangedSubview(_:animated:horizontalInset:height:) to the instance of FlameScrollView. FlameScrollView also automatically listen to the keyboard show/hide notification.
-
-#### Usage
-
-```swift
-let scrollView = FlameScrollView(frame: view.bounds)
-scrollView.addArrangedSubview(subView1)
-scrollView.addArrangedSubview(subView2)
-scrollView.addMarginStack(height: 16.0) // adding margin
-```
 
 
 ### FlameButton

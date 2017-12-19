@@ -14,7 +14,7 @@ class ViewController: UIViewController {
   // MARK: - Settings
   
   struct Metric {
-    static let contentWidth: CGFloat = UIScreen.width - 32.0
+    static let contentWidth: CGFloat = UIScreen.flm.width - 32.0
   }
   
   struct Color {
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
     scrollView.addSubview(refreshControl)
     refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
     
-    
+
     
     setContent()
   }

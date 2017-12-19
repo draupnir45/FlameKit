@@ -9,7 +9,13 @@
 import UIKit
 
 public extension UIScreen {
-  enum ScreenType: Int { //스크린 높이를 rawValue로.
+  public class var flm: FlameScreenUtil {
+    return FlameScreenUtil()
+  }
+}
+
+public class FlameScreenUtil {
+  public enum ScreenType: Int { //스크린 높이를 rawValue로.
     case iPhone1 = 480
     case iPhone5 = 568
     case iPhone6 = 667
@@ -18,23 +24,22 @@ public extension UIScreen {
     case unDefined = 0
   }
   
-  class public var width: CGFloat {
+  public var width: CGFloat {
     return UIScreen.main.bounds.width
   }
   
-  class public var height: CGFloat {
+  public var height: CGFloat {
     return UIScreen.main.bounds.height
   }
   
-  class public var screenType: ScreenType {
-    let height = Int(UIScreen.height)
+  public var screenType: ScreenType {
+    let height = Int(self.height)
     if let screenType = ScreenType.init(rawValue: height) {
       return screenType
     } else { return .unDefined }
   }
   
-  static public var isIphoneX: Bool {
-    return UIScreen.screenType == .iPhoneX
+  public var isIphoneX: Bool {
+    return self.screenType == .iPhoneX
   }
 }
-

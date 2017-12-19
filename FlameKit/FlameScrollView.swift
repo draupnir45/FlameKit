@@ -27,7 +27,7 @@ open class FlameScrollView: UIScrollView, UITextFieldDelegate {
   public var shouldAddNavBarInset: Bool = false {
     didSet {
       if shouldAddNavBarInset {
-        if UIScreen.isIphoneX {
+        if UIScreen.flm.isIphoneX {
           self.contentInset.top = 88.0
           self.contentOffset.y = -88.0
         } else {
@@ -79,7 +79,7 @@ open class FlameScrollView: UIScrollView, UITextFieldDelegate {
       self.contentInsetAdjustmentBehavior = .never
     }
     
-    if UIScreen.isIphoneX {
+    if UIScreen.flm.isIphoneX {
       contentInset.bottom = 44.0
     }
     

@@ -26,9 +26,9 @@ open class FlameNavigationBar: UIView, UIGestureRecognizerDelegate, UIScrollView
   // MARK: - Settings
   
   public struct Metric {
-    static public let screenWidth: CGFloat = UIScreen.width
+    static public let screenWidth: CGFloat = UIScreen.flm.width
     static public var statusBarHeight: CGFloat {
-      if UIScreen.isIphoneX {
+      if UIScreen.flm.isIphoneX {
         return 44.0
       } else {
         return 20.0
