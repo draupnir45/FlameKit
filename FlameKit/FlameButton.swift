@@ -9,17 +9,28 @@
 import UIKit
 
 public typealias FlameButtonHandler = (FlameButton) -> Void
-public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
+public typealias FlameButtonAppearanceHandler = ((_ isSelected: Bool, _ isEnabled: Bool) -> Void)
+
 
 @objcMembers open class FlameButton: UIView {
   
+  
+  /// closure to execute when button tapped.
   var handler: FlameButtonHandler?
   
-  var customView: UIView?
+  var appearanceView: UIView?
   var appearanceHandler: FlameButtonAppearanceHandler?
   
   public var isSelected: Bool = false {
-    didSet { appearanceHandler?(isSelected) }
+    didSet { 
+      appearanceHandler?(isSelected, isEnabled) 
+    }
+  }
+  
+  public var isEnabled: Bool = true {
+    didSet {
+      appearanceHandler?(isSelected, isEnabled)
+    }
   }
   
   let tapGestureRecognizer = UITapGestureRecognizer()
@@ -30,12 +41,12 @@ public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
   }
   
   @objc func executeHandler(_ sender: UITapGestureRecognizer) {
-    if let handler = handler {
+    if let handler = handler, self.isEnabled {
       handler(self)
     }
   }
   
-  public func add(handler: @escaping FlameButtonHandler) {
+  public func action(handler: @escaping FlameButtonHandler) {
     self.handler = handler
   }
   
@@ -45,16 +56,17 @@ public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
   }
   
   required public init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    setInitialState()
+    fatalError("init(coder:) has not been implemented")
   }
   
-  public func setCustomView(_ customView: UIView, appearanceHandler: @escaping FlameButtonAppearanceHandler) {
-    addSubview(customView)
+  public func setAppearanceView(_ view: UIView, appearanceHandler: @escaping FlameButtonAppearanceHandler) {
+    addSubview(view)
+    view.frame = self.bounds
+    view.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate(
       [
         NSLayoutConstraint.init(
-          item: customView, 
+          item: view, 
           attribute: NSLayoutAttribute.width, 
           relatedBy: NSLayoutRelation.equal, 
           toItem: self, 
@@ -63,7 +75,7 @@ public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
           constant: 0.0
         ),
         NSLayoutConstraint.init(
-          item: customView, 
+          item: view, 
           attribute: NSLayoutAttribute.height, 
           relatedBy: NSLayoutRelation.equal, 
           toItem: self, 
@@ -72,7 +84,7 @@ public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
           constant: 0.0
         ),
         NSLayoutConstraint.init(
-          item: customView, 
+          item: view, 
           attribute: NSLayoutAttribute.centerX, 
           relatedBy: NSLayoutRelation.equal, 
           toItem: self, 
@@ -81,7 +93,7 @@ public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
           constant: 0.0
         ),
         NSLayoutConstraint.init(
-          item: customView, 
+          item: view, 
           attribute: NSLayoutAttribute.centerY, 
           relatedBy: NSLayoutRelation.equal, 
           toItem: self, 
@@ -91,11 +103,9 @@ public typealias FlameButtonAppearanceHandler = ((Bool) -> Void)
         )
       ]
     )
-    
-    self.customView = customView
+    self.appearanceView = view
     self.appearanceHandler = appearanceHandler
-    appearanceHandler(isSelected)
+    appearanceHandler(isSelected, isEnabled)
   }
-  
 }
 

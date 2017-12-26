@@ -8,15 +8,15 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FlameKit'
-  s.version          = '0.1.8'
+  s.version          = '0.1.9'
   s.summary          = 'StackView + ScrollView, simplified.'
   
   s.description      = <<-DESC
 FlameKit is collection of simple custom UIs. For version 0.1.0, it offers FlameNavigationBar, FlameScrollView & FlameButton. 
 
-FlameNavigationBar is UIView-based customizable NavigationBar. FlameNavigationBar supports iOS 11 style LargeTitle and collapsing. It's compatible with scrollview. (FlameNavigationBar will be a delegate of scrollView... It will be fixed in future update.)
-
 FlameScrollView is subclass of UIScrollView which has UIStackView(vertical) as a built-in subview. It's seats somewhere between UIScrollView and UITableView. If you want to add vertical stack simply call addArrangedSubview(_:animated:horizontalInset:height:) to the instance of FlameScrollView. FlameScrollView also automatically listen to the keyboard show/hide notification.
+
+FlameNavigationBar is UIView-based customizable NavigationBar. FlameNavigationBar supports iOS 11 style LargeTitle and collapsing. It's compatible with scrollview. (FlameNavigationBar will be a delegate of scrollView... It will be fixed in future update.)
 
 DESC
 
@@ -36,5 +36,5 @@ DESC
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-# s.dependency 'SnapKit'
+
 end

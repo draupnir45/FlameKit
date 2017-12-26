@@ -11,34 +11,6 @@
 
 iOS 9.0을 디플로이 타겟으로 하는 앱들을 위한 커스텀 UI 라이브러리입니다. 주요 클래스는 아래와 같습니다.
 
-### FlameScreenUtil (NEW!)
-
-FlameScreenUtil은 아이폰 스크린 사이즈 대응을 위한 간단한 getter 모음입니다.
-
-#### 지원 사이즈
-- iPhone1 - 오리지널 320 x 480 (iPhone 2G ~ iPhone 4S)
-- iPhone5 - 와이드1 320 x 568 (iPhone 5 ~ iPhone SE)
-- iPhone6 - 와이드2 375 x 667 (iPhone 6 ~ iPhone 8)
-- iPhone6Plus - 와이드3 414 x 736 (iPhone 6+ ~ iPhone 8+)
-- iPhoneX - 새로운 사이즈 375 x 812 (iPhone X)
-
-#### Usage
-
-```swift
-switch UIScreen.flm.screenType { 
-case .iPhone6Plus:
-  // setting for iPhone 6 Plus..
-case .iPhoneX:
-  // setting for iPhone X..
-default:
-  // setting for others...
-}
-
-if UIScreen.flm.isIphoneX {
-  //setting specific for iPhone X..
-}
-```
-
 ### FlameScrollView
 기본 베이스는 스크롤 뷰이지만, 버티컬 스택뷰를 포함하고 있는 스크롤뷰입니다. 컨텐트사이즈는 오토 레이아웃을 통해 자동으로 스택 뷰의 높이에 따라 길어집니다. addArrangedSubview(_:animated:horizontalInset:height:) 와 insertArrangedSubview(_:index:animated:horizontalInset:height:)를 이용해서 서브뷰를 추가하면 됩니다.
 UITableView의 키보드 노티 듣는 기능도 지원합니다. 일반 키보드나 피커에 따라 자동으로 컨텐트 인셋과 인디케이터 인셋을 추가했다 뺐다 합니다.
@@ -76,17 +48,51 @@ scrollView.contentInset.top = navigationBar.frame.height
 let button = FlameButton()
 let customView = UIView() // 외관을 꾸미세요
     
-button.add { (button) in
+button.action { (button) in
   print("button is tapped!") // 버튼 눌렀을 때 행동.
   button.isSelected = true
 }
     
-button.setCustomView(customView) { (isSelected) in // 커스텀뷰의 모양을 컨트롤하세요.
+button.setCustomView(customView) { (isSelected, isEnabled) in // 커스텀뷰의 모양을 컨트롤하세요.
   if isSelected {
     customView.backgroundColor = .red
   } else {
     customView.backgroundColor = .blue
   }
+  
+  if isEnabled {
+    label.alpha = 1.0        
+  } else {
+    label.alpha = 0.5
+  }
+}
+```
+
+### FlameScreenUtil
+
+FlameScreenUtil은 아이폰 스크린 사이즈 대응을 위한 간단한 getter 모음입니다.
+
+#### 지원 사이즈
+- iPhone1 - 오리지널 320 x 480 (iPhone 2G ~ iPhone 4S)
+- iPhone5 - 와이드1 320 x 568 (iPhone 5 ~ iPhone SE)
+- iPhone6 - 와이드2 375 x 667 (iPhone 6 ~ iPhone 8)
+- iPhone6Plus - 와이드3 414 x 736 (iPhone 6+ ~ iPhone 8+)
+- iPhoneX - 새로운 사이즈 375 x 812 (iPhone X)
+
+#### Usage
+
+```swift
+switch UIScreen.flm.screenType { 
+case .iPhone6Plus:
+  // setting for iPhone 6 Plus..
+case .iPhoneX:
+  // setting for iPhone X..
+default:
+  // setting for others...
+}
+
+if UIScreen.flm.isIphoneX {
+  //setting specific for iPhone X..
 }
 ```
 
@@ -107,6 +113,9 @@ pod 설치 후 헤더 파일에 아래와 같이 임포트해 주세요.
 ```objc
 @import FlameKit;
 ```
+
+## Update
+- 0.1.9 : FlameButton에 활성화/비활성화(isEnabled) 기능 추가
 
 ## Author
 

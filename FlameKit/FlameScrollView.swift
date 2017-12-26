@@ -14,16 +14,22 @@ import UIKit
 @objcMembers open class FlameScrollView: UIScrollView, UITextFieldDelegate {
   
   // MARK: - UIViews
-  let contentView = UIView()
-  public let rootStackView: UIStackView = {
+  let contentView: UIView = {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
+  public let stackView: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .vertical
     stackView.alignment = .center
     stackView.distribution = .fill
+    stackView.translatesAutoresizingMaskIntoConstraints = false
     return stackView
   }()
-  private let topSpacingView = UIView()
-  private let bottomSpacingView = UIView()
+  //private let topSpacingView = UIView()
+  //private let bottomSpacingView = UIView()
   public var shouldAddNavBarInset: Bool = false {
     didSet {
       if shouldAddNavBarInset {
@@ -48,13 +54,17 @@ import UIKit
   }
   
   
-  public var numberOfStacks: Int {
-    return self.rootStackView.arrangedSubviews.count - 2
+//  public var numberOfStacks: Int {
+//    return self.stackView.arrangedSubviews.count
+//  }
+  
+  public var arrangedSubviews: [UIView] {
+    return self.stackView.arrangedSubviews
   }
   
   public var spacing: CGFloat {
-    get { return rootStackView.spacing }
-    set { rootStackView.spacing = newValue }
+    get { return stackView.spacing }
+    set { stackView.spacing = newValue }
   }
   
   private lazy var visibleSize = self.bounds.size
@@ -68,8 +78,7 @@ import UIKit
   }
   
   required public init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    setInitialState()
+    fatalError("init(coder:) has not been implemented")
   }
   
   private func setInitialState() {
@@ -84,16 +93,14 @@ import UIKit
     }
     
     self.addSubview(contentView)
-    contentView.addSubview(rootStackView)
-    rootStackView.addArrangedSubview(topSpacingView)
-    rootStackView.addArrangedSubview(bottomSpacingView)
-    contentView.translatesAutoresizingMaskIntoConstraints = false
-    rootStackView.translatesAutoresizingMaskIntoConstraints = false
-    topSpacingView.translatesAutoresizingMaskIntoConstraints = false
-    bottomSpacingView.translatesAutoresizingMaskIntoConstraints = false
+    contentView.addSubview(stackView)
+    //stackView.addArrangedSubview(topSpacingView)
+    //stackView.addArrangedSubview(bottomSpacingView)
+    //topSpacingView.translatesAutoresizingMaskIntoConstraints = false
+    //bottomSpacingView.translatesAutoresizingMaskIntoConstraints = false
     
     let constraintForDynamicHeight = 
-      NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: rootStackView, attribute: .height, multiplier: 1.0, constant: 0.0)
+      NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: stackView, attribute: .height, multiplier: 1.0, constant: 0.0)
     constraintForDynamicHeight.priority = UILayoutPriority(rawValue: 900)
     
     let constraints = [
@@ -105,14 +112,15 @@ import UIKit
       NSLayoutConstraint(item: contentView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0.0),
       
       // rootStackView
-      NSLayoutConstraint(item: rootStackView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1.0, constant: 0.0),
-      NSLayoutConstraint(item: rootStackView, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: 1.0, constant: 0.0),
-      NSLayoutConstraint(item: rootStackView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0),
-      constraintForDynamicHeight,
+      NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: stackView, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: stackView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0),
+      constraintForDynamicHeight
+      //,
       
       // top & bottom spacing
-      NSLayoutConstraint(item: topSpacingView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.1),
-      NSLayoutConstraint(item: bottomSpacingView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32.0)
+      //NSLayoutConstraint(item: topSpacingView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.1),
+      //NSLayoutConstraint(item: bottomSpacingView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32.0)
     ]
     NSLayoutConstraint.activate(constraints)
     listenToTheKeyboard()
@@ -182,7 +190,7 @@ import UIKit
       item: view, 
       attribute: .width, 
       relatedBy: .equal, 
-      toItem: rootStackView, 
+      toItem: stackView, 
       attribute: .width, 
       multiplier: 1.0, 
       constant: -horizontalInset * 2.0))
@@ -199,7 +207,7 @@ import UIKit
         constant: height))
     }
     
-    rootStackView.insertArrangedSubview(view, at: index + 1)
+    stackView.insertArrangedSubview(view, at: index)
     NSLayoutConstraint.activate(constraints)
     
     if animated {
@@ -216,7 +224,7 @@ import UIKit
   public func addArrangedSubview(_ view: UIView, animated: Bool = false, horizontalInset: CGFloat = 0.0, height: CGFloat = 0.0) {
     
     self.insertArrangedSubview(view, 
-                               index: rootStackView.arrangedSubviews.count - 2,
+                               index: stackView.arrangedSubviews.count,
                                animated: animated, 
                                horizontalInset: horizontalInset,
                                height: height)
@@ -228,11 +236,11 @@ import UIKit
         view.isHidden = true
         view.alpha = 0.0
       }, completion: { _ in
-        self.rootStackView.removeArrangedSubview(view)
+        self.stackView.removeArrangedSubview(view)
         view.removeFromSuperview()
       })
     } else {
-      rootStackView.removeArrangedSubview(view)
+      stackView.removeArrangedSubview(view)
       view.removeFromSuperview()
     }
   }
@@ -244,6 +252,17 @@ import UIKit
     }
   }
   
+  /// 마진을 중간에 추가하고자 할 때 씁니다. 레이아웃이 다이나믹한 곳에서 쓰면, arrangedSubview들 순서 때문에 컨트롤이 곤란할 수 있습니다.
+  ///
+  /// - Parameter 
+  ///   - height: 마진의 높이입니다.
+  ///   - color: 마진 색입니다.
+  public func insertMarginStack(height: CGFloat, color: UIColor = .clear, index: Int) {
+    let marginView = UIView()
+    marginView.backgroundColor = color
+    NSLayoutConstraint.activate([NSLayoutConstraint(item: marginView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)])
+    self.insertArrangedSubview(marginView, index: index, animated: false)
+  }
   
   /// 마진을 맨 아래에 추가하고자 할 때 씁니다. 레이아웃이 다이나믹한 곳에서 쓰면, arrangedSubview들 순서 때문에 컨트롤이 곤란할 수 있습니다.
   ///
@@ -251,10 +270,7 @@ import UIKit
   ///   - height: 마진의 높이입니다.
   ///   - color: 마진 색입니다.
   public func addMarginStack(height: CGFloat, color: UIColor = .clear) {
-    let marginView = UIView()
-    marginView.backgroundColor = color
-    NSLayoutConstraint.activate([NSLayoutConstraint(item: marginView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)])
-    self.addArrangedSubview(marginView, animated: false)
+    insertMarginStack(height: height, color: color, index: self.arrangedSubviews.count)
   }
   
 }

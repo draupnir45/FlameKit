@@ -10,34 +10,6 @@
 
 FlameKit is collection of simple custom UIs. For version 0.1.0, It offers three Classes & one util. FlameScrollView, FlameNavigationBar, FlameButton & *new FlameScreenUtil*
 
-### FlameScreenUtil (NEW!)
-
-FlameScreenUtil is collection of simple getters for dealing with various iphone screen sizes.
-
-#### Supporting Sizes
-- iPhone1 - 320 x 480 (iPhone 2G ~ iPhone 4S)
-- iPhone5 - 320 x 568 (iPhone 5 ~ iPhone SE)
-- iPhone6 - 375 x 667 (iPhone 6 ~ iPhone 8)
-- iPhone6Plus - 414 x 736 (iPhone 6+ ~ iPhone 8+)
-- iPhoneX - 375 x 812 (iPhone X)
-
-#### Usage
-
-```swift
-switch UIScreen.flm.screenType { 
-case .iPhone6Plus:
-  // setting for iPhone 6 Plus..
-case .iPhoneX:
-  // setting for iPhone X..
-default:
-  // setting for others...
-}
-
-if UIScreen.flm.isIphoneX {
-  //setting specific for iPhone X..
-}
-```
-
 ### FlameScrollView
 
 FlameScrollView is subclass of UIScrollView which has UIStackView(vertical) as a built-in subview. It's seats somewhere between UIScrollView and UITableView. If you want to add vertical stack simply call addArrangedSubview(_:animated:horizontalInset:height:) to the instance of FlameScrollView. FlameScrollView also automatically listen to the keyboard show/hide notification.
@@ -77,19 +49,53 @@ FlameButton is UIView-based button that uses closure, not selector.
 let button = FlameButton()
 let customView = UIView() // draw whatever you want.
     
-button.add { (button) in
+button.action { (button) in
   print("button is tapped!") //when button tapped.
 }
     
-button.setCustomView(customView) { (isSelected) in // control appearance here.
+button.setCustomView(customView) { (isSelected, isEnabled) in // control appearance here.
   if isSelected {
     customView.backgroundColor = .red
   } else {
     customView.backgroundColor = .blue
   }
+  
+  if isEnabled {
+    label.alpha = 1.0        
+  } else {
+    label.alpha = 0.5
+  }
 }
 ```
 
+
+### FlameScreenUtil
+
+FlameScreenUtil is collection of simple getters for dealing with various iphone screen sizes.
+
+#### Supporting Sizes
+- iPhone1 - 320 x 480 (iPhone 2G ~ iPhone 4S)
+- iPhone5 - 320 x 568 (iPhone 5 ~ iPhone SE)
+- iPhone6 - 375 x 667 (iPhone 6 ~ iPhone 8)
+- iPhone6Plus - 414 x 736 (iPhone 6+ ~ iPhone 8+)
+- iPhoneX - 375 x 812 (iPhone X)
+
+#### Usage
+
+```swift
+switch UIScreen.flm.screenType { 
+case .iPhone6Plus:
+// setting for iPhone 6 Plus..
+case .iPhoneX:
+// setting for iPhone X..
+default:
+// setting for others...
+}
+
+if UIScreen.flm.isIphoneX {
+//setting specific for iPhone X..
+}
+```
 
 ## Example
 
@@ -115,6 +121,10 @@ Install pod first. then on your .h file,
 ```objc
 @import FlameKit;
 ```
+
+## Update
+
+- 0.1.9 : Add 'isEnabled' function to FlameButton
 
 ## Author
 
