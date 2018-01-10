@@ -9,7 +9,7 @@
 ## Update Log
 
 - 0.1.9 : Add `isEnabled` property to the FlameButton
-- 0.1.10 : Add property `isHighlighted` and function `setHighlightedAppearanceHandler(highlightedAppearanceHandler:)` to the FlameButton
+- 0.1.10 : Add property `isHighlighted` and `highlightedAppearanceHandler` to the FlameButton
 
 ## Summary
 

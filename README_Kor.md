@@ -6,6 +6,9 @@
 
 [English README](README.md)
 
+## Update Log
+- 0.1.9 : FlameButton에 활성화/비활성화(isEnabled) 기능 추가
+- 0.1.10 : FlameButton에 프로퍼티 `highlightedAppearanceHandler:)`와 `isHighlighted` 추가.
 
 ## 개요
 
@@ -114,8 +117,7 @@ pod 설치 후 헤더 파일에 아래와 같이 임포트해 주세요.
 @import FlameKit;
 ```
 
-## Update
-- 0.1.9 : FlameButton에 활성화/비활성화(isEnabled) 기능 추가
+
 
 ## Author
 

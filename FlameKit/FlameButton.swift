@@ -144,9 +144,5 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
     self.appearanceHandler = appearanceHandler
     appearanceHandler(isSelected, isEnabled)
   }
-  
-  public func setHighlightedAppearanceHandler(highlightedAppearanceHandler: @escaping FlameButtonHighlightedAppearanceHandler) {
-    self.highlightedAppearanceHandler = highlightedAppearanceHandler
-  }
 }
 
