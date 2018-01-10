@@ -52,12 +52,7 @@ import UIKit
       self.scrollIndicatorInsets = contentInset
     }
   }
-  
-  
-//  public var numberOfStacks: Int {
-//    return self.stackView.arrangedSubviews.count
-//  }
-  
+
   public var arrangedSubviews: [UIView] {
     return self.stackView.arrangedSubviews
   }
@@ -94,10 +89,6 @@ import UIKit
     
     self.addSubview(contentView)
     contentView.addSubview(stackView)
-    //stackView.addArrangedSubview(topSpacingView)
-    //stackView.addArrangedSubview(bottomSpacingView)
-    //topSpacingView.translatesAutoresizingMaskIntoConstraints = false
-    //bottomSpacingView.translatesAutoresizingMaskIntoConstraints = false
     
     let constraintForDynamicHeight = 
       NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: stackView, attribute: .height, multiplier: 1.0, constant: 0.0)
@@ -116,11 +107,6 @@ import UIKit
       NSLayoutConstraint(item: stackView, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: 1.0, constant: 0.0),
       NSLayoutConstraint(item: stackView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0),
       constraintForDynamicHeight
-      //,
-      
-      // top & bottom spacing
-      //NSLayoutConstraint(item: topSpacingView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.1),
-      //NSLayoutConstraint(item: bottomSpacingView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32.0)
     ]
     NSLayoutConstraint.activate(constraints)
     listenToTheKeyboard()
@@ -128,38 +114,40 @@ import UIKit
   
   var keyboardWillShowObserver: NSObjectProtocol?
   var keyboardWillHideObserver: NSObjectProtocol?
+  var bottomInsetBuffer: CGFloat = 0.0
   
   func listenToTheKeyboard() {
     keyboardWillShowObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillShow, object: nil, queue: nil) {[weak self] notification in
       guard 
-        let `wself` = self,
+        let `self` = self,
         let frameValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue 
         else { return }
-      var calculatedContentInsets = wself.contentInset
-      var calculatedScrollIndicatorInsets = wself.scrollIndicatorInsets
+      self.bottomInsetBuffer = self.contentInset.bottom
+      var calculatedContentInsets = self.contentInset
+      var calculatedScrollIndicatorInsets = self.scrollIndicatorInsets
       let keyboardFrame = frameValue.cgRectValue
       calculatedContentInsets.bottom = keyboardFrame.size.height
       calculatedScrollIndicatorInsets.bottom = keyboardFrame.size.height
-      wself.contentInset = calculatedContentInsets
-      wself.scrollIndicatorInsets = calculatedScrollIndicatorInsets
-      wself.setNeedsLayout()
-      wself.layoutIfNeeded()
+      self.contentInset = calculatedContentInsets
+      self.scrollIndicatorInsets = calculatedScrollIndicatorInsets
+      self.setNeedsLayout()
+      self.layoutIfNeeded()
     }
     
     keyboardWillHideObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil) {[weak self] _ in
       guard 
-        let `wself` = self
+        let `self` = self
         else { return }
       
-      var calculatedContentInsets = wself.contentInset
-      var calculatedScrollIndicatorInsets = wself.scrollIndicatorInsets
+      var calculatedContentInsets = self.contentInset
+      var calculatedScrollIndicatorInsets = self.scrollIndicatorInsets
       
-      calculatedContentInsets.bottom = 0.0
-      calculatedScrollIndicatorInsets.bottom = 0.0
-      wself.contentInset = calculatedContentInsets
-      wself.scrollIndicatorInsets = calculatedScrollIndicatorInsets
-      wself.setNeedsLayout()
-      wself.layoutIfNeeded()
+      calculatedContentInsets.bottom = self.bottomInsetBuffer
+      calculatedScrollIndicatorInsets.bottom = self.bottomInsetBuffer
+      self.contentInset = calculatedContentInsets
+      self.scrollIndicatorInsets = calculatedScrollIndicatorInsets
+      self.setNeedsLayout()
+      self.layoutIfNeeded()
     }
   }
   

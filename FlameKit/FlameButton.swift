@@ -10,7 +10,7 @@ import UIKit
 
 public typealias FlameButtonHandler = (FlameButton) -> Void
 public typealias FlameButtonAppearanceHandler = ((_ isSelected: Bool, _ isEnabled: Bool) -> Void)
-
+public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bool, _ appearanceView: UIView?) -> Void)
 
 @objcMembers open class FlameButton: UIView {
   
@@ -20,6 +20,7 @@ public typealias FlameButtonAppearanceHandler = ((_ isSelected: Bool, _ isEnable
   
   var appearanceView: UIView?
   var appearanceHandler: FlameButtonAppearanceHandler?
+  var highlightedAppearanceHandler: FlameButtonHighlightedAppearanceHandler?
   
   public var isSelected: Bool = false {
     didSet { 
@@ -33,18 +34,54 @@ public typealias FlameButtonAppearanceHandler = ((_ isSelected: Bool, _ isEnable
     }
   }
   
-  let tapGestureRecognizer = UITapGestureRecognizer()
-  
-  private func setInitialState() {
-    addGestureRecognizer(tapGestureRecognizer)
-    tapGestureRecognizer.addTarget(self, action: #selector(self.executeHandler(_:)))
-  }
-  
-  @objc func executeHandler(_ sender: UITapGestureRecognizer) {
-    if let handler = handler, self.isEnabled {
-      handler(self)
+  public var isHighlighted: Bool = false {
+    didSet {
+      if let handler = highlightedAppearanceHandler {
+        handler(isHighlighted, appearanceView)
+      } else {
+        appearanceView?.alpha = isHighlighted ? 0.5 : 1.0
+      }
     }
   }
+  
+  //  let tapGestureRecognizer = UITapGestureRecognizer()
+  
+  private func setInitialState() {
+    //    addGestureRecognizer(tapGestureRecognizer)
+    //    tapGestureRecognizer.addTarget(self, action: #selector(self.executeHandler(_:)))
+    
+  }
+  
+  open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesMoved(touches, with: event)
+    let touchedPoint = touches.first?.location(in: self.superview) ?? CGPoint.zero
+    
+    if frame.contains(touchedPoint) && !isHighlighted {
+      isHighlighted = true
+    }
+    
+    if !frame.contains(touchedPoint) && isHighlighted {
+      isHighlighted = false
+    }
+    
+  }
+  
+  override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesEnded(touches, with: event)
+    let touchedPoint = touches.first?.location(in: self.superview) ?? CGPoint.zero
+    
+    guard event?.allTouches?.count == 1 else { return }
+    let touchEndedInView = self.frame.contains(touchedPoint)
+    if touchEndedInView {
+      handler?(self)
+    }
+    
+    isHighlighted = false
+  }
+  
+//  @objc func executeHandler(_ sender: UITapGestureRecognizer) {
+//    handler?(self)
+//  }
   
   public func action(handler: @escaping FlameButtonHandler) {
     self.handler = handler
@@ -106,6 +143,10 @@ public typealias FlameButtonAppearanceHandler = ((_ isSelected: Bool, _ isEnable
     self.appearanceView = view
     self.appearanceHandler = appearanceHandler
     appearanceHandler(isSelected, isEnabled)
+  }
+  
+  public func setHighlightedAppearanceHandler(highlightedAppearanceHandler: @escaping FlameButtonHighlightedAppearanceHandler) {
+    self.highlightedAppearanceHandler = highlightedAppearanceHandler
   }
 }
 

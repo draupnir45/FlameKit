@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FlameKit'
-  s.version          = '0.1.9'
+  s.version          = '0.1.10'
   s.summary          = 'StackView + ScrollView, simplified.'
   
   s.description      = <<-DESC

@@ -105,7 +105,7 @@ public protocol FlameNavigationBarDelegate: class {
   }
   
   func snapExpand() {
-    if collapsedSize > 0 && collapsedSize < Metric.dynamicAreaHeight - 0.5 {
+    if collapsedSize > 0 && collapsedSize < Metric.dynamicAreaHeight * 0.5 {
       UIView.animate(withDuration: 0.5, animations: { 
         self.collapsedSize = 0.0
         self.scrollView?.contentOffset.y = -Metric.totalHeight
@@ -233,19 +233,14 @@ public protocol FlameNavigationBarDelegate: class {
   public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     
     if !didEndDecelerating {
-      //      print(scrollView.contentOffset.y + scrollView.contentInset.top)
       self.collapsedSize = scrollView.contentOffset.y + scrollView.contentInset.top 
     } else {
       self.snapExpand()
     }
-    //    print(#function)
   }
   
   public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-    
-    //    print(#function)
     if !decelerate && self.collapsedSize < FlameNavigationBar.Metric.dynamicAreaHeight {
-      //      customNavBar.snap()
       UIView.animate(withDuration: 0.5, animations: { 
         scrollView.setContentOffset(CGPoint(x: 0.0, y: self.snap() - scrollView.contentInset.top), animated: false)
         self.collapsedSize = scrollView.contentOffset.y + scrollView.contentInset.top

@@ -6,6 +6,11 @@
 
 한글 설명은 [여기](README_Kor.md)
 
+## Update Log
+
+- 0.1.9 : Add `isEnabled` property to the FlameButton
+- 0.1.10 : Add property `isHighlighted` and function `setHighlightedAppearanceHandler(highlightedAppearanceHandler:)` to the FlameButton
+
 ## Summary
 
 FlameKit is collection of simple custom UIs. For version 0.1.0, It offers three Classes & one util. FlameScrollView, FlameNavigationBar, FlameButton & *new FlameScreenUtil*
@@ -122,9 +127,7 @@ Install pod first. then on your .h file,
 @import FlameKit;
 ```
 
-## Update
 
-- 0.1.9 : Add 'isEnabled' function to FlameButton
 
 ## Author
 

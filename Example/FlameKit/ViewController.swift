@@ -17,14 +17,6 @@ class ViewController: UIViewController {
     static let contentWidth: CGFloat = UIScreen.flm.width - 32.0
   }
   
-  struct Color {
-    
-  }
-  
-  struct Fonts {
-    
-  }
-  
   // MARK: - Sample Contents
   
   let sampleTitles = [
@@ -74,10 +66,10 @@ class ViewController: UIViewController {
     button.setAppearanceView(label, appearanceHandler: { (isSelected, _) in
       if isSelected {
         label.textColor = .red
-        label.text = "스택 추가 ON"
+        label.text = "Add Button ON"
       } else {
         label.textColor = .gray
-        label.text = "스택 추가 OFF"
+        label.text = "Add Button OFF"
       }
     })
     button.isSelected = true
@@ -88,8 +80,9 @@ class ViewController: UIViewController {
   let newStackButton: FlameButton = {
     let button = FlameButton.init(frame: CGRect.init(x: 16.0, y: 16.0, width: 100.0, height: 30.0))
     let label = UILabel()
-    label.text = "새 내용 추가"
+    label.text = "new stack"
     label.textColor = .red
+    
     button.setAppearanceView(label, appearanceHandler: { (_, isEnabled) in
       if isEnabled {
         label.alpha = 1.0        
@@ -112,6 +105,7 @@ class ViewController: UIViewController {
     label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2)
     label.sizeToFit()
     label.backgroundColor = .white
+//    label.characterSpacing = 10.0
     
     view.addSubview(label)
     NSLayoutConstraint.activate(
@@ -140,7 +134,7 @@ class ViewController: UIViewController {
     label.numberOfLines = 0
     label.sizeToFit()
     label.backgroundColor = .white
-    
+    label.preferredMaxLayoutWidth = 50.0
     
     view.addSubview(label)
     NSLayoutConstraint.activate(
@@ -230,8 +224,12 @@ class ViewController: UIViewController {
     setContent()
     
     if #available(iOS 10.0, *) {
-      _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-        self.refreshControl.endRefreshing()
+      _ = Timer.scheduledTimer(
+        withTimeInterval: 0.5, 
+        repeats: false, 
+        block: { [weak self] _ in
+          guard let `self` = self else { return }
+          self.refreshControl.endRefreshing()
       })
     } else {
       _ = Timer.scheduledTimer(timeInterval: 0.5, target: self.refreshControl, selector: #selector(self.refreshControl.endRefreshing), userInfo: nil, repeats: false)
@@ -240,10 +238,8 @@ class ViewController: UIViewController {
   
   func setContent() {
     scrollView.addMarginStack(height: 16.0)
-    
     scrollView.addArrangedSubview(copyrightLabel)
     addNewContentStacks()
-    
   }
   
   var sampleIndex: Int = 0
@@ -251,10 +247,19 @@ class ViewController: UIViewController {
   func addNewContentStacks() {
     let index = sampleIndex % sampleTitles.count
     
-    scrollView.insertArrangedSubview(newTitleStack(sampleTitles[index]), index: scrollView.arrangedSubviews.count - 1, animated: true)
-    scrollView.insertArrangedSubview(newLabelStack(sampleDescriptions[index]), index: scrollView.arrangedSubviews.count - 1, animated: true)
+    scrollView.insertArrangedSubview(
+      newTitleStack(sampleTitles[index]), 
+      index: scrollView.arrangedSubviews.count - 1, 
+      animated: true
+    )
+    
+    scrollView.insertArrangedSubview(
+      newLabelStack(sampleDescriptions[index]), 
+      index: scrollView.arrangedSubviews.count - 1, 
+      animated: true
+    )
+    
     scrollView.insertMarginStack(height: 16.0, index: scrollView.arrangedSubviews.count - 1)
-//    scrollView.addMarginStack(height: 16.0)
     sampleIndex += 1
   }
   
