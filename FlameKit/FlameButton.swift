@@ -120,6 +120,7 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
     addSubview(view)
     view.frame = self.bounds
     view.translatesAutoresizingMaskIntoConstraints = false
+    view.isUserInteractionEnabled = false
     NSLayoutConstraint.activate(
       [
         NSLayoutConstraint.init(
