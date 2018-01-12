@@ -107,11 +107,7 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
     isHighlighted = false
 
   }
-  
-//  @objc func executeHandler(_ sender: UITapGestureRecognizer) {
-//    handler?(self)
-//  }
-  
+
   public func action(handler: @escaping FlameButtonHandler) {
     self.handler = handler
   }
