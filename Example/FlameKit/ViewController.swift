@@ -164,6 +164,7 @@ class ViewController: UIViewController {
     navigationBar.scrollView = scrollView
     scrollView.contentInset.top = navigationBar.frame.height
     
+    
     //버튼들 추가
     navigationBar.staticNavigationBarView.addSubview(stackAddEnableButton)
     NSLayoutConstraint.activate([

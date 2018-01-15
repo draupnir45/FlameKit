@@ -14,6 +14,7 @@
 		9CF780F9C247CD74C91B8B42FC80B91D /* Pods-FlameKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B25CA87D8501FF454826FEE3072807C8 /* Pods-FlameKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A05CB93FB56A70B6329E92F5408F9981 /* Pods-FlameKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A60BE83E1AEEF6F3B9AB93F9CCDA847 /* Pods-FlameKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1688E4C32737B605716781623640AFD /* FlameKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65399FAE8838B4C08DACD3CBF6DADC0C /* FlameKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B950699E200CA16C00750E64 /* FlameSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B950699D200CA16C00750E64 /* FlameSlideView.swift */; };
 		B9E278461FE2467D005D4231 /* UIScreen+flm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E278421FE2467D005D4231 /* UIScreen+flm.swift */; };
 		B9E278471FE2467D005D4231 /* FlameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E278431FE2467D005D4231 /* FlameButton.swift */; };
 		B9E278481FE2467D005D4231 /* FlameNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E278441FE2467D005D4231 /* FlameNavigationBar.swift */; };
@@ -56,6 +57,7 @@
 		A2EE5CB45D3839C9CBDE8E2DB3D99004 /* Pods-FlameKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-FlameKit_Tests.modulemap"; sourceTree = "<group>"; };
 		B25CA87D8501FF454826FEE3072807C8 /* Pods-FlameKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FlameKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		B950699D200CA16C00750E64 /* FlameSlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlameSlideView.swift; path = FlameKit/FlameSlideView.swift; sourceTree = "<group>"; };
 		B9E278421FE2467D005D4231 /* UIScreen+flm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIScreen+flm.swift"; path = "FlameKit/UIScreen+flm.swift"; sourceTree = "<group>"; };
 		B9E278431FE2467D005D4231 /* FlameButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlameButton.swift; path = FlameKit/FlameButton.swift; sourceTree = "<group>"; };
 		B9E278441FE2467D005D4231 /* FlameNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlameNavigationBar.swift; path = FlameKit/FlameNavigationBar.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				B9E278431FE2467D005D4231 /* FlameButton.swift */,
+				B950699D200CA16C00750E64 /* FlameSlideView.swift */,
 				B9E278441FE2467D005D4231 /* FlameNavigationBar.swift */,
 				B9E278451FE2467D005D4231 /* FlameScrollView.swift */,
 				B9E278421FE2467D005D4231 /* UIScreen+flm.swift */,
@@ -351,6 +354,7 @@
 				20577F9A9BC3861CAC8469392C7CC3FE /* FlameKit-dummy.m in Sources */,
 				B9E278481FE2467D005D4231 /* FlameNavigationBar.swift in Sources */,
 				B9E278471FE2467D005D4231 /* FlameButton.swift in Sources */,
+				B950699E200CA16C00750E64 /* FlameSlideView.swift in Sources */,
 				B9E278461FE2467D005D4231 /* UIScreen+flm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
