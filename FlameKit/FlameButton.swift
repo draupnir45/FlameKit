@@ -47,10 +47,9 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
   
   // MARK: - initializers
   
-  open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-
-    return false
-  }
+//  open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//    return false
+//  }
   
   open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     
@@ -78,6 +77,8 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
     
     isHighlighted = false
   }
+  
+
   
   open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     
@@ -111,6 +112,8 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
   public func action(handler: @escaping FlameButtonHandler) {
     self.handler = handler
   }
+  
+  
   
   public func setAppearanceView(_ view: UIView, appearanceHandler: @escaping FlameButtonAppearanceHandler) {
     addSubview(view)
@@ -162,4 +165,10 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
     appearanceHandler(isSelected, isEnabled)
   }
 }
+
+//extension FlameButton: UIGestureRecognizerDelegate {
+//  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//    return true
+//  }
+//}
 

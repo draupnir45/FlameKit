@@ -16,7 +16,10 @@ public protocol FlameSlideViewDelegate: class {
   
   open weak var delegate: FlameSlideViewDelegate?
   
-  open let pagingScrollView: UIScrollView = {
+  var appWillResignActiveObserver: NSObjectProtocol!
+  var appDidBecomeActiveObserver: NSObjectProtocol!
+  
+  open let scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.isPagingEnabled = true
     scrollView.showsVerticalScrollIndicator = false
@@ -27,26 +30,49 @@ public protocol FlameSlideViewDelegate: class {
   open var viewArray: [UIView] = [] {
     didSet {
       layoutSubviews()
+      
+      guard viewArray.count > 0 else { return }
+      
       _ = self.viewArray.map { subview in
-        subview.frame = CGRect.init(origin: CGPoint.init(x: pagingScrollView.frame.width, y: 0.0), size: pagingScrollView.frame.size)
-        self.pagingScrollView.addSubview(subview)
+        subview.frame = CGRect.init(origin: CGPoint.init(x: scrollView.frame.width, y: 0.0), size: scrollView.frame.size)
+        subview.clipsToBounds = true
+        self.scrollView.addSubview(subview)
         subview.isHidden = true
       }
-      viewArray[currentViewIndex].isHidden = false
+      
+      if viewArray.indices.contains(currentViewIndex) {
+        viewArray[currentViewIndex].isHidden = false
+      }
     }
   }
   
   var currentViewIndex: Int = 0
-  var currentViewFrame: CGRect = CGRect.zero
+  
+  public func setIndex(index: Int) {
+    self.currentViewIndex = index
+    _ = viewArray.map { view in
+      view.isHidden = true
+    }
+    viewArray[index].isHidden = false
+    viewArray[index].frame = currentViewFrame
+    scrollView.contentOffset.x = scrollView.frame.width
+  }
+  
+  var currentViewFrame: CGRect = CGRect.zero {
+    didSet {
+      if viewArray.indices.contains(currentViewIndex) {
+        viewArray[currentViewIndex].frame = currentViewFrame
+      }
+    }
+  }
   var prevViewFrame: CGRect = CGRect.zero
   var nextViewFrame: CGRect = CGRect.zero
-  var slideTimeInterval: TimeInterval = 3.0
+  public var slideTimeInterval: TimeInterval = 3.0
   
-  override init(frame: CGRect) {
+  override public init(frame: CGRect) {
     super.init(frame: frame)
+    self.isAutoSlideEnabled = true
     setSubviews()
-    
-    //    self.isAutoSlideEnabled = true
   }
   
   required public init?(coder aDecoder: NSCoder) {
@@ -55,13 +81,24 @@ public protocol FlameSlideViewDelegate: class {
   
   deinit {
     delegate = nil
+    NotificationCenter.default.removeObserver(appWillResignActiveObserver)
+    NotificationCenter.default.removeObserver(appDidBecomeActiveObserver)
   }
   
   func setSubviews() {
-    addSubview(pagingScrollView)
-    pagingScrollView.delegate = self
-    pagingScrollView.frame = self.bounds
+    addSubview(scrollView)
+    scrollView.delegate = self
+    scrollView.frame = self.bounds
     layoutCustomViews()
+    
+    
+    appWillResignActiveObserver = NotificationCenter.default.addObserver(forName: .UIApplicationWillResignActive, object: nil, queue: nil) { notification in
+      self.isAutoSlideEnabled = false
+    }
+    
+    appDidBecomeActiveObserver = NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: nil) { notification in
+      self.isAutoSlideEnabled = true
+    }
     
   }
   
@@ -70,53 +107,56 @@ public protocol FlameSlideViewDelegate: class {
     self.layoutCustomViews()
   }
   
-  open var isAutoSlideEnabled = true
+  open var isAutoSlideEnabled = true {
+    didSet {
+      if isAutoSlideEnabled {
+        startSlide()
+      } else {
+        pauseSlide()
+      }
+    }
+  }
   
   var autoSlideTimer: Timer?
   
-  func layoutCustomViews() {
-    pagingScrollView.frame = self.bounds
+  public func layoutCustomViews() {
+    scrollView.frame = self.bounds
     
     prevViewFrame = CGRect.init(
       origin: CGPoint.init(x: 0.0, y: 0.0),
-      size: pagingScrollView.frame.size)
+      size: scrollView.frame.size)
     
     currentViewFrame = CGRect.init(
-      origin: CGPoint.init(x: pagingScrollView.frame.width, y: 0.0),
-      size: pagingScrollView.frame.size)
+      origin: CGPoint.init(x: scrollView.frame.width, y: 0.0),
+      size: scrollView.frame.size)
     
     nextViewFrame = CGRect.init(
-      origin: CGPoint.init(x: pagingScrollView.frame.width * 2.0, y: 0.0),
-      size: pagingScrollView.frame.size)
+      origin: CGPoint.init(x: scrollView.frame.width * 2.0, y: 0.0),
+      size: scrollView.frame.size)
     
-    pagingScrollView.contentOffset.x = pagingScrollView.frame.width
-    pagingScrollView.contentSize = CGSize.init(
+    scrollView.contentOffset.x = scrollView.frame.width
+    scrollView.contentSize = CGSize.init(
       width: self.bounds.width * 3,
       height: self.bounds.height)
     
   }
-  
-  @objc func goNextView() {
-    self.pagingScrollView.setContentOffset(CGPoint.init(x: pagingScrollView.frame.size.width * 2, y: 0.0), animated: true)
-  }
+
   
   public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     
-    
+    guard viewArray.count > 0 else { return }
     let width = scrollView.frame.width
     
-    // 다음 카드로 갈 때
+    // 다음 카드로 가기 전 준비
     if scrollView.contentOffset.x > width {
-      
       let nextIndex = (currentViewIndex + 1) % viewArray.count
       let nextView = self.viewArray[nextIndex]
       nextView.frame = nextViewFrame
       nextView.isHidden = false
     }
     
-    // 이전 카드로 갈 때
+    // 이전 카드로 가기 전 준비
     if scrollView.contentOffset.x < width {
-      
       let prevIndex = (currentViewIndex + viewArray.count - 1) % viewArray.count
       let prevView = self.viewArray[prevIndex]
       prevView.frame = prevViewFrame
@@ -125,22 +165,18 @@ public protocol FlameSlideViewDelegate: class {
     
     //오프셋 초기화
     if scrollView.contentOffset.x >= width * 2.0 {
+      
       //다음 카드로 완전히 넘어갔을 때
-      viewArray[currentViewIndex].isHidden = true
       let nextIndex = (currentViewIndex + 1) % viewArray.count
       currentViewIndex = nextIndex
-      scrollView.contentOffset.x -= width
-      viewArray[currentViewIndex].frame = currentViewFrame
-      setNewTimer()
+      cleanUp()
       
     } else if scrollView.contentOffset.x <= 0.0 {
+      
       //이전 카드로 완전히 넘어갔을 때
-      viewArray[currentViewIndex].isHidden = true
       let prevIndex = (currentViewIndex + viewArray.count - 1) % viewArray.count
       currentViewIndex = prevIndex
-      scrollView.contentOffset.x += width
-      viewArray[currentViewIndex].frame = currentViewFrame
-      setNewTimer()
+      cleanUp()
     }
     
     var progress = ((scrollView.contentOffset.x - width) / width) + CGFloat(currentViewIndex)
@@ -153,14 +189,43 @@ public protocol FlameSlideViewDelegate: class {
     
   }
   
-  func setNewTimer() {
-    if isAutoSlideEnabled {
-      
+  func startSlide() {
       autoSlideTimer?.invalidate()
       autoSlideTimer = nil
       autoSlideTimer =
-        Timer.scheduledTimer(timeInterval: slideTimeInterval, target: self, selector: #selector(self.goNextView), userInfo: nil, repeats: false)
-      
-    }
+        Timer
+          .scheduledTimer(
+            timeInterval: slideTimeInterval,
+            target: self,
+            selector: #selector(self.goNextView),
+            userInfo: nil,
+            repeats: false)
   }
+  
+  
+  @objc func goNextView() {
+    guard viewArray.count > 0 else { return }
+    self.scrollView.setContentOffset(CGPoint.init(x: self.frame.size.width * 2, y: 0.0), animated: true)
+  }
+  
+  func hideAll() {
+    _ = viewArray.map({ view in
+      view.isHidden = true
+    })
+  }
+  
+  func cleanUp() {
+    hideAll()
+    viewArray[currentViewIndex].frame = currentViewFrame
+    viewArray[currentViewIndex].isHidden = false
+    scrollView.contentOffset.x = self.frame.width
+    if isAutoSlideEnabled { startSlide() }
+  }
+  
+  func pauseSlide() {
+      autoSlideTimer?.invalidate()
+      autoSlideTimer = nil
+
+  }
+  
 }

@@ -156,11 +156,6 @@ import UIKit
     keyboardWillShowObserver = nil
   }
   
-  override open func layoutSubviews() {
-    super.layoutSubviews()
-    layoutIfNeeded()
-  }
-  
   // MARK: - Subviews Control
   
   public func insertArrangedSubview(_ view: UIView,
@@ -261,5 +256,20 @@ import UIKit
     insertMarginStack(height: height, color: color, index: self.arrangedSubviews.count)
   }
   
+
+  override open func touchesShouldCancel(in view: UIView) -> Bool {
+    if view is UIControl
+      && !(view is UITextInput)
+      && !(view is UISlider)
+      && !(view is UISwitch) {
+      return true
+    }
+    
+    return super.touchesShouldCancel(in: view)
+  }
+  
 }
+
+
+
 
