@@ -12,8 +12,7 @@ public typealias FlameButtonHandler = (FlameButton) -> Void
 public typealias FlameButtonAppearanceHandler = ((_ isSelected: Bool, _ isEnabled: Bool) -> Void)
 public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bool, _ appearanceView: UIView?) -> Void)
 
-@objcMembers open class FlameButton: UIView {
-  
+@objcMembers open class FlameButton: UIButton {
   
   /// closure to execute when button tapped.
   var handler: FlameButtonHandler?
@@ -22,19 +21,19 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
   var appearanceHandler: FlameButtonAppearanceHandler?
   public var highlightedAppearanceHandler: FlameButtonHighlightedAppearanceHandler?
   
-  public var isSelected: Bool = false {
+  open override var isSelected: Bool {
     didSet { 
       appearanceHandler?(isSelected, isEnabled) 
     }
   }
   
-  public var isEnabled: Bool = true {
+  open override var isEnabled: Bool {
     didSet {
       appearanceHandler?(isSelected, isEnabled)
     }
   }
   
-  public var isHighlighted: Bool = false {
+  open override var isHighlighted: Bool {
     didSet {
       guard isEnabled else { return }
       if let handler = highlightedAppearanceHandler {
@@ -47,73 +46,22 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
   
   // MARK: - initializers
   
-//  open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-//    return false
-//  }
-  
-  open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-    let touchedPoint = touches.first?.location(in: self.superview) ?? CGPoint.zero
-    
-    if frame.contains(touchedPoint) && !isHighlighted {
-      isHighlighted = true
-    }
-    
-    if !frame.contains(touchedPoint) && isHighlighted {
-      isHighlighted = false
-    }
-    super.touchesMoved(touches, with: event)
-    
+  public override init(frame: CGRect) {
+    super.init(frame: frame)
+    addTarget(self, action: #selector(self.executeHandler(_:)), for: .touchUpInside)
   }
   
-  open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    let touchedPoint = touches.first?.location(in: self.superview) ?? CGPoint.zero
-    
-    guard event?.allTouches?.count == 1 else { return }
-    let touchEndedInView = self.frame.contains(touchedPoint)
-    if touchEndedInView {
-      handler?(self)
-    }
-    
-    isHighlighted = false
+  required public init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
   
-
-  
-  open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-    print(#function)
-    let touchedPoint = touches.first?.location(in: self.superview) ?? CGPoint.zero
-
-    if frame.contains(touchedPoint) && !isHighlighted {
-      isHighlighted = true
-    }
-
-    if !frame.contains(touchedPoint) && isHighlighted {
-      isHighlighted = false
-    }
-    super.touchesMoved(touches, with: event)
+  @objc private func executeHandler(_ sender: FlameButton) {
+    self.handler?(sender)
   }
-  
-  override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-    let touchedPoint = touches.first?.location(in: self.superview) ?? CGPoint.zero
-
-    guard event?.allTouches?.count == 1 else { return }
-    let touchEndedInView = self.frame.contains(touchedPoint)
-    if touchEndedInView {
-      handler?(self)
-    }
-
-    isHighlighted = false
-
-  }
-
+ 
   public func action(handler: @escaping FlameButtonHandler) {
     self.handler = handler
   }
-  
-  
   
   public func setAppearanceView(_ view: UIView, appearanceHandler: @escaping FlameButtonAppearanceHandler) {
     addSubview(view)
@@ -165,10 +113,3 @@ public typealias FlameButtonHighlightedAppearanceHandler = ((_ isHighlighted: Bo
     appearanceHandler(isSelected, isEnabled)
   }
 }
-
-//extension FlameButton: UIGestureRecognizerDelegate {
-//  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//    return true
-//  }
-//}
-

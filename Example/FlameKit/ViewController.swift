@@ -66,10 +66,10 @@ class ViewController: UIViewController {
     button.setAppearanceView(label, appearanceHandler: { (isSelected, _) in
       if isSelected {
         label.textColor = .red
-        label.text = "Add Button ON"
+        label.text = "Add ON"
       } else {
         label.textColor = .gray
-        label.text = "Add Button OFF"
+        label.text = "Add OFF"
       }
     })
     button.isSelected = true
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
   let newStackButton: FlameButton = {
     let button = FlameButton.init(frame: CGRect.init(x: 16.0, y: 16.0, width: 100.0, height: 30.0))
     let label = UILabel()
-    label.text = "new stack"
+    label.text = "Add New"
     label.textColor = .red
     
     button.setAppearanceView(label, appearanceHandler: { (_, isEnabled) in
@@ -240,6 +240,7 @@ class ViewController: UIViewController {
   func setContent() {
     scrollView.addMarginStack(height: 16.0)
     scrollView.addArrangedSubview(copyrightLabel)
+    scrollView.addMarginStack(height: 16.0)
     addNewContentStacks()
   }
   
@@ -250,17 +251,17 @@ class ViewController: UIViewController {
     
     scrollView.insertArrangedSubview(
       newTitleStack(sampleTitles[index]), 
-      index: scrollView.arrangedSubviews.count - 1, 
+      index: scrollView.arrangedSubviews.count - 2,
       animated: true
     )
     
     scrollView.insertArrangedSubview(
       newLabelStack(sampleDescriptions[index]), 
-      index: scrollView.arrangedSubviews.count - 1, 
+      index: scrollView.arrangedSubviews.count - 2,
       animated: true
     )
     
-    scrollView.insertMarginStack(height: 16.0, index: scrollView.arrangedSubviews.count - 1)
+    scrollView.insertMarginStack(height: 16.0, index: scrollView.arrangedSubviews.count - 2)
     sampleIndex += 1
   }
   

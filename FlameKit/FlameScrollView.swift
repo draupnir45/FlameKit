@@ -77,7 +77,7 @@ import UIKit
   }
   
   private func setInitialState() {
-    self.alwaysBounceVertical = true
+    self.alwaysBounceVertical = true    
     
     if #available(iOS 11.0, *) {
       self.contentInsetAdjustmentBehavior = .never
@@ -230,8 +230,10 @@ import UIKit
   
   public func scrollToBottom() {
     let bottom = contentSize.height - frame.height + contentInset.bottom
-    UIView.animate(withDuration: 0.5) { 
-      self.contentOffset = CGPoint(x: 0.0, y: bottom)
+    if contentOffset.y < bottom {
+      UIView.animate(withDuration: 0.5) { 
+        self.contentOffset = CGPoint(x: 0.0, y: bottom)
+      }
     }
   }
   
